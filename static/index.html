@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>go-react</title>
-    <script crossorigin src="./static/react.min.js"></script>
-    <script crossorigin src="./static/react-dom.min.js"></script>
-    <script src="./static/babel.min.js"></script>
+    <script crossorigin src="./static/react.min.js" type="text/javascript" charset="UTF-8"></script>
+    <script crossorigin src="./static/react-dom.min.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="./static/babel.min.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="./static/axios.min.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="./static/axios.min.map" type="text/javascript" charset="UTF-8"></script>
 </head>
 <body>
 <div id="root"></div>
 <h1>HHHHHH</h1>
+<input type="button" value="clicked" onclick="getJsonData()">
 <script type="text/babel">
     var currentDate = new Date()
     // console.log(React)
@@ -63,6 +66,13 @@
     //     document.getElementById('root')
     // );
 
+    function getJsonData() {
+        axios.get("/jsonData").then(function (response) {
+            console.log("response data:", response)
+        }).catch(function (error) {
+            console.log("error:", error)
+        })
+    }
 </script>
 
 </body>
