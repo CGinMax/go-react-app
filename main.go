@@ -15,6 +15,9 @@ func main() {
 			"Name": "Cooper Gin",
 		})
 	})
+	r.GET("/material", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "material.html", nil)
+	})
 	r.GET("/jsonData", func(c *gin.Context) {
 		data := map[string]interface{}{
 			"lang": "Gin框架",

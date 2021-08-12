@@ -3,22 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>go-react</title>
-    <script crossorigin src="./static/react.min.js" type="text/javascript" charset="UTF-8"></script>
-    <script crossorigin src="./static/react-dom.min.js" type="text/javascript" charset="UTF-8"></script>
-    <script src="./static/babel.min.js" type="text/javascript" charset="UTF-8"></script>
-    <script src="./static/axios.min.js" type="text/javascript" charset="UTF-8"></script>
-    <script src="./static/axios.min.map" type="text/javascript" charset="UTF-8"></script>
+    <script src="static/js/axios.min.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="static/js/axios.min.map" type="text/javascript" charset="UTF-8"></script>
+
+    <script src="static/js/react.production.min.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="static/js/react-dom.production.min.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="static/js/material-ui.min.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="static/js/babel.min.js" type="text/javascript" charset="UTF-8"></script>
+
+{{/*    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>*/}}
+{{/*    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>*/}}
+{{/*    <script crossorigin src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js" ></script>*/}}
+
+    <!-- Fonts to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <!-- Icons to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 </head>
 <body>
 <div id="root"></div>
-<h1>HHHHHH</h1>
-<input type="button" value="clicked" onclick="getJsonData()">
+
 <script type="text/babel">
-    var currentDate = new Date()
+    const {
+        colors,
+        CssBaseline,
+        ThemeProvider,
+        Typography,
+        Container,
+        makeStyles,
+        createTheme,
+        Box,
+        SvgIcon,
+        Link,
+        Button,
+    } = MaterialUI;
+    var currentDate = new Date();
     // console.log(React)
-    const rootElement = document.getElementById('root')
+    const rootElement = document.getElementById('root');
     // const mainElement = document.querySelector('.main')
-    const jsxElement = <h1>This is jsx title!</h1>
+    const jsxElement = <h1>This is jsx title!</h1>;
     // const headerStyle = { border: '2px solid orange', backgroundColor: '#61DBFB', color: 'black', fontSize: '18px' }
     const header = (
         <header /*style={headerStyle}*/>
@@ -29,13 +52,15 @@
                 <p>{{.Name}}</p>
                 <p>{{.Title}}</p>
                 <small>04/17 2021</small>
+
             </div>
 
         </header>
-    )
+    );
     const main = (
         <main>
             <div className='main-wrapper'>
+
                 <p>Prerequisite to get started react.js</p>
                 <ul>
                     <li>HTML</li>
@@ -45,26 +70,27 @@
             </div>
 
         </main>
-    )
+    );
     const footer = (
         <footer>
             <div className='footer-wrapper'>
                 <p>Copyright {currentDate.toLocaleTimeString()}</p>
             </div>
         </footer>
-    )
+    );
     const app = (
-        <div>
-            {header}
-            {main}
-            {footer}
-        </div>
-    )
-    ReactDOM.render(app, rootElement)
-    // ReactDOM.render(
-    //     <h1>Hello, world!</h1>,
-    //     document.getElementById('root')
-    // );
+        <ThemeProvider >
+            <div >
+                {header}
+                {main}
+                {footer}
+            </div>
+            <Button variant="contained" color="primary" onClick={getJsonData()}>
+                获取数据
+            </Button>
+        </ThemeProvider>
+    );
+    ReactDOM.render(app, rootElement);
 
     function getJsonData() {
         axios.get("/jsonData").then(function (response) {
