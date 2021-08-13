@@ -1,19 +1,23 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
-	r.Static("/static/", "./static/")
-	r.LoadHTMLGlob("static/*.html")
+	r.Static("/webapp/", "./webapp/")
+	r.LoadHTMLGlob("webapp/*.html")
 	r.GET("/index", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"Title": "Go-React",
-			"Name": "Cooper Gin",
+			"Name":  "Cooper Gin",
 		})
+	})
+	r.GET("/gopage", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "gotemplatepage.html", nil)
 	})
 	r.GET("/material", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "material.html", nil)
